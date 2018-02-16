@@ -1,0 +1,24 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class MakeBig : MonoBehaviour
+{
+
+	public string Tag;
+	public float increase;
+
+
+	void OnTriggerEnter2D (Collider2D col)
+	{
+
+		if (col.gameObject.tag == Tag) {
+
+			transform.localScale += new Vector3 (increase, increase, increase);
+			Destroy (col.gameObject);
+
+		}
+
+	}
+
+
+}

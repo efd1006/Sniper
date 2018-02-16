@@ -1,0 +1,33 @@
+﻿using UnityEngine;
+
+public class MoveLeft : MonoBehaviour
+{
+
+	public float moveSpeed;
+	[SerializeField]
+	private bool _randomizeHeight = true;
+
+
+	void Update ()
+	{
+
+		transform.Translate (0, -moveSpeed * Time.deltaTime, 0);
+		
+		if (transform.position.y <= -5.35f) {
+			if (_randomizeHeight) {
+				
+				float randomYPosition = UnityEngine.Random.Range (-0.86f, 0.6f);
+				float randomYPosition2 = UnityEngine.Random.Range (5.26f, 8.0f);
+				transform.position = new Vector3 (randomYPosition, randomYPosition2, 0);
+
+			} else {
+				
+				transform.position = new Vector3 (transform.position.x, 5.26f, 0);
+
+			}
+
+		}
+
+	}
+
+} 

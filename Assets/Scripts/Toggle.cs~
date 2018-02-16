@@ -1,0 +1,38 @@
+﻿using UnityEngine;
+using System.Collections;
+using UnityEngine.UI;
+
+public class Toggle : MonoBehaviour
+{
+
+	bool soundToggle = true;
+
+	//bool audioIsMuted;
+
+
+	void Start ()
+	{
+
+		//audioIsMuted = PlayerPrefs.GetInt ("AudioIsMuted") == 1;
+
+	}
+
+	public void ToggleSound ()
+	{
+
+		soundToggle = !soundToggle;
+		if (soundToggle) {
+
+			AudioListener.volume = 1f;
+			PlayerPrefs.SetInt ("AudioIsMuted", 0); 
+
+		} else {
+
+			AudioListener.volume = 0f;
+			PlayerPrefs.SetInt ("AudioIsMuted", 1);
+
+		}
+
+	}
+
+}

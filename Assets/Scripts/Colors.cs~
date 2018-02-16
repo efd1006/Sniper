@@ -1,0 +1,19 @@
+﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
+public class Colors : MonoBehaviour
+{
+
+	public List<Material> Materials = new List <Material> ();
+
+
+	void Awake ()
+	{
+
+		GetComponent<Renderer> ().material = Materials [Random.Range (0, Materials.Count)];
+
+	}
+
+
+}

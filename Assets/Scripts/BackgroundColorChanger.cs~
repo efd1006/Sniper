@@ -1,0 +1,35 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class BackgroundColorChanger : MonoBehaviour
+{
+	
+	public Color startColor = Color;
+	public Color endColor = Color;
+
+	public float duration = 3.0F;
+
+	private Camera mainCam;
+	private new Camera camera;
+
+
+	void Start ()
+	{
+		
+		camera = GetComponent<Camera> ();
+
+		camera.clearFlags = CameraClearFlags.SolidColor;
+
+	}
+
+
+	void Update ()
+	{
+		
+		float t = Mathf.InverseLerp (0, duration, Time.timeSinceLevelLoad);
+		camera.backgroundColor = Color.Lerp (startColor, endColor, t);
+	
+	}
+
+
+}

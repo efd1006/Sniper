@@ -1,0 +1,33 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class Spawn : MonoBehaviour
+{
+
+	public GameObject obj;
+	public float speed;
+
+
+	void Start ()
+	{
+
+		InvokeRepeating ("Generate", 0, speed);
+
+	}
+
+
+	void Generate ()
+	{
+
+		float x = Random.Range (-0.86f, 0.79f);
+		float y = Random.Range (5.34f, 10f);
+
+		Vector3 Target = new Vector3 (x, y, 0);
+		Target.z = 0;
+
+		Instantiate (obj, Target, Quaternion.identity);
+
+	}
+
+
+}

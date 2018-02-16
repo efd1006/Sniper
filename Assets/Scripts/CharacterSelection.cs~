@@ -1,0 +1,151 @@
+﻿using UnityEngine;
+using System.Collections;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+public class CharacterSelection : MonoBehaviour
+{
+
+	private GameObject[] characterList;
+
+	private int Character;
+	//private int allCoin;
+
+	public GameObject notEnoughCoin;
+
+
+	private void Start ()
+	{
+
+		//allCoin = PlayerPrefs.GetInt ("AllCoins");
+
+		Character = PlayerPrefs.GetInt ("CharacterSelected");
+
+		characterList = new GameObject[transform.childCount];
+
+		// Fill the array with characters
+		for (int i = 0; i < transform.childCount; i++) {
+
+			characterList [i] = transform.GetChild (i).gameObject;
+
+		}
+
+		// Toggle off their renderer
+		foreach (GameObject go in characterList) {
+
+			go.SetActive (false);
+
+		}
+
+		// Toggle on the selected character
+		if (characterList [Character]) {
+
+			characterList [Character].SetActive (true);
+
+		}
+
+	}
+
+
+	public void ToggleLeft ()
+	{
+
+		characterList [Character].SetActive (false);
+
+		Character--; 
+
+		if (Character < 0) {
+
+			Character = characterList.Length - 1;
+
+		} 
+			
+		characterList [Character].SetActive (true);
+
+	}
+
+
+	public void ToggleRight ()
+	{
+		
+		characterList [Character].SetActive (false);
+
+		Character++; 
+
+		if (Character == characterList.Length) {
+
+			Character = 0;
+
+		} 
+			
+		characterList [Character].SetActive (true);
+
+	}
+
+
+	public void Ball0 ()
+	{
+
+		Character = 0;
+
+		characterList [Character].SetActive (true);
+
+		Confirm ();
+
+		/* int price = 1;
+
+		if (allCoin >= price) {
+
+			allCoin -= price;
+
+			PlayerPrefs.SetInt ("AllCoins", allCoin);
+
+			Character = 0;
+
+			characterList [Character].SetActive (true);
+
+			Confirm ();
+
+		} else {
+
+			notEnoughCoin.SetActive (true);
+
+		}*/
+			
+	}
+
+
+	public void Ball1 ()
+	{
+
+		Character = 1;
+
+		characterList [Character].SetActive (true);
+
+		Confirm ();
+
+	}
+
+
+	public void Ball2 ()
+	{
+
+		Character = 2;
+	
+		characterList [Character].SetActive (true);
+
+		Confirm ();
+
+	}
+
+
+	public void Confirm ()
+	{
+
+		PlayerPrefs.SetInt ("CharacterSelected", Character);
+		SceneManager.LoadScene ("GameMenu");
+
+	}
+
+
+}

@@ -1,0 +1,40 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class MakeSize : MonoBehaviour
+{
+
+	public string Tag;
+	public float increaseSize;
+
+	//public GameObject background;
+	//public Color backgroundColor;
+
+	public AudioClip sound;
+
+	AudioSource playerAudioSource;
+
+
+	void Start ()
+	{
+
+		playerAudioSource = GetComponent<AudioSource> ();
+
+	}
+
+	void OnTriggerEnter2D (Collider2D col)
+	{
+		 
+		if (col.gameObject.tag == Tag) {
+
+			playerAudioSource.PlayOneShot (sound);
+			transform.localScale += new Vector3 (increaseSize, increaseSize, 1);
+			Destroy (col.gameObject);
+			//background.gameObject.GetComponent<SpriteRenderer> ().color = backgroundColor;
+
+		}
+			
+	}
+
+
+}

@@ -1,0 +1,61 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class ToggleButton : MonoBehaviour
+{
+
+	private bool isMute;
+	private Toggle myToggleButton;
+	private int val;
+
+
+	public void Start ()
+	{
+
+		val = PlayerPrefs.GetInt ("Val");
+		
+		//myToggle = GetComponent<UnityEngine.UI.Toggle> ();
+		myToggleButton = GameObject.Find ("ToggleSoundButton").GetComponent<Toggle> ();
+
+		if (val == 0) {
+
+			myToggleButton.isOn = false;
+
+		} else if (val == 1) {
+
+			myToggleButton.isOn = true;
+
+		}
+	
+	}
+
+
+	public void MuteToggle ()
+	{
+
+		isMute = !isMute;
+		if (isMute == true) {
+
+			AudioListener.volume = 0;
+			myToggleButton = GameObject.Find ("ToggleSoundButton").GetComponent<Toggle> ();
+			myToggleButton.isOn = false;
+			val = 0;
+			PlayerPrefs.SetInt ("Val", val);
+			//PlayerPrefs.SetFloat ("music", 0);
+
+		} else {
+
+			AudioListener.volume = 1;
+			myToggleButton.isOn = true;
+			val = 1;
+			PlayerPrefs.SetInt ("Val", val);
+			//PlayerPrefs.SetFloat ("music", 1);
+
+		}
+
+	}
+
+		
+}
