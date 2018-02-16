@@ -1,0 +1,2 @@
+# Sniper
+An educational game
